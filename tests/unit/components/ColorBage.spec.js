@@ -1,7 +1,9 @@
-import { shallowMount } from '@vue/test-utils'
+import { shallowMount, enableAutoDestroy } from '@vue/test-utils'
 import ColorBage from '@/components/ColorBage'
 
 describe('ColorBage', () => {
+  enableAutoDestroy(beforeEach)
+
   let wrapper
 
   const createComponent = (props) => {
