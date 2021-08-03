@@ -1,8 +1,8 @@
 <template>
-  <aside class="sidebar">
+  <aside class="sidebar-main">
     <SidebarItem
       :active="isActive(0)"
-      class="all"
+      class="sidebar-main__item"
       @click="selectItem(0)"
     >
       <template #prepend>
@@ -17,6 +17,7 @@
       v-for="(item, index) in items"
       :key="item.id"
       remove
+      class="sidebar-main__item"
       :active="isActive(index + 1)"
       @click="selectItem(index + 1)"
     >
@@ -68,22 +69,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sidebar {
+.sidebar-main {
   width: 200px;
   padding: 48px 20px 0;
   background-color: #F5F6F8;
   border-right: 1px solid #F1F1F1;
 
-  .item {
+  &__item {
     margin-bottom: 8px;
+
+    &:first-child {
+      margin-bottom: 20px;
+    }
 
     &:nth-last-child(2) {
       margin-bottom: 28px;
     }
-  }
-
-  .all {
-    margin-bottom: 20px;
   }
 }
 </style>

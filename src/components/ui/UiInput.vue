@@ -1,13 +1,13 @@
 <template>
-  <div class="wrapper">
+  <div class="ui-input">
     <input
-      class="input"
+      class="ui-input__input"
       type="text"
       :value="value"
       :placeholder="placeholder"
       @input="$emit('input', $event.target.value)"
     >
-    <div v-if="error" class="error">Error</div>
+    <div v-if="error" class="ui-input__error">Error</div>
   </div>
 </template>
 
@@ -23,26 +23,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
+.ui-input {
   position: relative;
-  margin-bottom: 20px;
-}
 
-.input {
-  padding: 8px 12px;
-  border-radius: 4px;
-  border: 1px solid #EFEFEF;
+  &__input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #EFEFEF;
 
-  &::placeholder {
-    color: #C7C7C7;
+    &::placeholder {
+      color: #C7C7C7;
+    }
   }
-}
 
-.error {
-  position: absolute;
-  bottom: -16px;
-  left: 0;
-  font-size: 12px;
-  color: $color-red;
+  &__error {
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    font-size: 12px;
+    color: $color-red;
+  }
 }
 </style>

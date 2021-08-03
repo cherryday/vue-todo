@@ -22,8 +22,8 @@ describe('ColorBage', () => {
   })
 
   it.each([
-    ['active', 'bage--active'],
-    ['selected', 'bage--selected']
+    ['active', 'color-bage--active'],
+    ['selected', 'color-bage--selected']
   ])('add classes if props', (propsName, className) => {
     createComponent({ [propsName]: true })
     expect(wrapper.classes()).toContain(className)

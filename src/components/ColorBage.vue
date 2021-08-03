@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bage"
+    class="color-bage"
     :style="styles"
     :class="classes"
     @click="$emit('click', $event)"
@@ -38,8 +38,8 @@ export default {
     },
     classes () {
       return {
-        'bage--active': this.active,
-        'bage--selected': this.selected
+        'color-bage--active': this.active,
+        'color-bage--selected': this.selected
       }
     }
   }
@@ -47,7 +47,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.bage {
+.color-bage {
   border-radius: 50%;
 
   &--selected {

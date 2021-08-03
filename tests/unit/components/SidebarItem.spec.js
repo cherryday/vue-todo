@@ -43,6 +43,6 @@ describe('SidebarItem', () => {
 
   it('add classes if props', () => {
     createComponent({ active: true })
-    expect(wrapper.classes()).toContain('item--active')
+    expect(wrapper.classes()).toContain('sidebar-item--active')
   })
 })

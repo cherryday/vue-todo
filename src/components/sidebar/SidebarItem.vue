@@ -1,20 +1,20 @@
 <template>
   <div
-    class="item"
+    class="sidebar-item"
     :class="classes"
     @click="$emit('click')"
   >
-    <div class="prepend">
+    <div class="sidebar-item__prepend">
       <slot name="prepend"></slot>
     </div>
 
-    <div class="text">
+    <div class="sidebar-item__text">
       <slot name="text"></slot>
     </div>
 
     <button
       v-if="remove"
-      class="button"
+      class="sidebar-item__button"
       @click.stop="$emit('remove')"
     >
       <IconCross/>
@@ -41,7 +41,7 @@ export default {
   computed: {
     classes () {
       return {
-        'item--active': this.active
+        'sidebar-item--active': this.active
       }
     }
   }
@@ -51,7 +51,7 @@ export default {
 <style lang="scss" scoped>
 $color-grey: #E3E3E3;
 
-.item {
+.sidebar-item {
   display: flex;
   align-items: center;
   padding: 10px 12px;
@@ -68,30 +68,30 @@ $color-grey: #E3E3E3;
     box-shadow: 0px 2px 10px rgba($color-black, 0.05);
     background: $color-white;
   }
-}
 
-.prepend {
-  margin-right: 10px;
-}
-
-.text {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  margin-right: 6px;
-}
-
-.button {
-  margin-left: auto;
-
-  svg {
-    transition: .3s;
-    color: $color-grey;
+  &__prepend {
+    margin-right: 10px;
   }
 
-  &:hover {
+  &__text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-right: 6px;
+  }
+
+  &__button {
+    margin-left: auto;
+
     svg {
-      color: $color-black;
+      transition: .3s;
+      color: $color-grey;
+    }
+
+    &:hover {
+      svg {
+        color: $color-black;
+      }
     }
   }
 }
