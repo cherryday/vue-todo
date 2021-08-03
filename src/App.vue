@@ -1,27 +1,40 @@
 <template>
   <div id="app">
-    <UiInput v-model="value" :error="'err'"/>
-    <UiInput placeholder="Text..."/>
+    <div class="container">
+      <SidebarMain :items="items"/>
+    </div>
   </div>
 </template>
 
 <script>
-import UiInput from './components/ui/UiInput.vue'
+import SidebarMain from './components/sidebar/SidebarMain.vue'
 
 export default {
   name: 'App',
-  components: { UiInput },
+  components: { SidebarMain },
   data () {
     return {
-      value: 'fsd'
+      items: [
+        { id: 1, name: 'One', color: '#64C4ED' },
+        { id: 2, name: 'Two', color: '#FFBBCC' }
+      ]
     }
-  },
-  watch: {
-    value (v) {
-      console.log(v)
-    }
-  },
-  methods: {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  min-height: 580px;
+}
+
+.container {
+  width: 748px;
+  height: 532px;
+  display: flex;
+}
+</style>

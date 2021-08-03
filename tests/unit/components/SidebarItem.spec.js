@@ -1,5 +1,5 @@
 import { shallowMount, enableAutoDestroy } from '@vue/test-utils'
-import SidebarItem from '@/components/SidebarItem'
+import SidebarItem from '@/components/sidebar/SidebarItem'
 
 describe('SidebarItem', () => {
   enableAutoDestroy(beforeEach)
