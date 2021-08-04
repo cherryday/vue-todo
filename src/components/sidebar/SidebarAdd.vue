@@ -70,7 +70,7 @@ export default {
       name: '',
       bageIndex: 0,
       bages: [
-        { id: 1, color: '#000' },
+        { id: 1, color: 'green' },
         { id: 2, color: 'red' }
       ]
     }
@@ -96,10 +96,10 @@ export default {
     left: 0;
     top: 110%;
     width: 236px;
-    background-color: #fff;
+    background-color: $color-white;
     padding: 18px;
     border-radius: 10px;
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 6px 10px rgba($color-black, 0.05);
   }
 
   &__close {
@@ -115,7 +115,7 @@ export default {
     justify-content: center;
 
     svg {
-      color: #fff;
+      color: $color-white;
       width: 8px;
       height: 8px;
     }

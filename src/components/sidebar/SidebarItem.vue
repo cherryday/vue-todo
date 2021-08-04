@@ -49,8 +49,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color-grey: #E3E3E3;
-
 .sidebar-item {
   display: flex;
   align-items: center;
@@ -85,7 +83,7 @@ $color-grey: #E3E3E3;
 
     svg {
       transition: .3s;
-      color: $color-grey;
+      color: #E3E3E3;
     }
 
     &:hover {

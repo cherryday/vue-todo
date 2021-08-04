@@ -33,8 +33,8 @@ export default {
   border-radius: 4px;
 
   &--green {
-    color: #FFFFFF;
-    background-color: #4DD599;
+    color: $color-white;
+    background-color: $color-green;
   }
 }
 </style>

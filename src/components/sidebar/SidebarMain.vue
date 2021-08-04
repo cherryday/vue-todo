@@ -1,33 +1,35 @@
 <template>
   <aside class="sidebar-main">
-    <SidebarItem
-      :active="isActive(0)"
-      class="sidebar-main__item"
-      @click="selectItem(0)"
-    >
-      <template #prepend>
-        <img src="@/assets/images/icon-list.svg" alt="list">
-      </template>
-      <template #text>
-        Все задачи
-      </template>
-    </SidebarItem>
+    <template v-if="items.length">
+      <SidebarItem
+        :active="isActive(0)"
+        class="sidebar-main__item"
+        @click="selectItem(0)"
+      >
+        <template #prepend>
+          <img src="@/assets/images/icon-list.svg" alt="list">
+        </template>
+        <template #text>
+          Все задачи
+        </template>
+      </SidebarItem>
 
-    <SidebarItem
-      v-for="(item, index) in items"
-      :key="item.id"
-      remove
-      class="sidebar-main__item"
-      :active="isActive(index + 1)"
-      @click="selectItem(index + 1)"
-    >
-      <template #prepend>
-        <ColorBage :color="item.color"/>
-      </template>
-      <template #text>
-        {{ item.name }}
-      </template>
-    </SidebarItem>
+      <SidebarItem
+        v-for="(item, index) in items"
+        :key="item.id"
+        remove
+        class="sidebar-main__item"
+        :active="isActive(index + 1)"
+        @click="selectItem(index + 1)"
+      >
+        <template #prepend>
+          <ColorBage :color="item.color"/>
+        </template>
+        <template #text>
+          {{ item.name }}
+        </template>
+      </SidebarItem>
+    </template>
 
     <SidebarAdd/>
   </aside>
