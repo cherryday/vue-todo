@@ -13,18 +13,22 @@
     <div class="todo-item__body">
       <TodoCheckbox/>
     </div>
+
+    <TodoAdd/>
   </div>
 </template>
 
 <script>
 import IconPencil from '../icons/IconPencil'
 import TodoCheckbox from './TodoCheckbox'
+import TodoAdd from './TodoAdd'
 
 export default {
   name: 'todo-item',
   components: {
     IconPencil,
-    TodoCheckbox
+    TodoCheckbox,
+    TodoAdd
   },
   props: {
     todo: {
@@ -54,6 +58,10 @@ export default {
     background-color: $color-grey-200;
     border: none;
     height: 1px;
+    margin-bottom: 20px;
+  }
+
+  &__body {
     margin-bottom: 20px;
   }
 

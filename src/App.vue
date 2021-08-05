@@ -4,7 +4,11 @@
       <SidebarMain :items="items"/>
 
       <main class="main">
-        <TodoItem :todo="todo"/>
+        <template v-if="items.length">
+          <TodoItem :todo="todo"/>
+        </template>
+
+        <h1 v-else class="main-title">Задачи отсутствуют</h1>
       </main>
     </div>
   </div>
@@ -56,5 +60,12 @@ export default {
   flex-grow: 1;
   padding: 56px 56px 0;
   background-color: $color-white;
+}
+
+.main-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 </style>

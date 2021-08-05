@@ -2,6 +2,7 @@
   <button
     class="ui-button"
     :class="classes"
+    @click="$emit('click')"
   >
     <slot></slot>
   </button>
@@ -19,7 +20,8 @@ export default {
   computed: {
     classes () {
       return {
-        'ui-button--green': this.color === 'green'
+        'ui-button--green': this.color === 'green',
+        'ui-button--grey': this.color === 'grey'
       }
     }
   }
@@ -35,6 +37,11 @@ export default {
   &--green {
     color: $color-white;
     background-color: $color-green;
+  }
+
+  &--grey {
+    color: #9C9C9C;
+    background-color: #F4F6F8;
   }
 }
 </style>
