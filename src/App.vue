@@ -5,7 +5,7 @@
 
       <main class="main">
         <template v-if="items.length">
-          <TodoItem :todo="todo"/>
+          <router-view></router-view>
         </template>
 
         <h1 v-else class="main-title">Задачи отсутствуют</h1>
@@ -16,13 +16,11 @@
 
 <script>
 import SidebarMain from '@/components/sidebar/SidebarMain'
-import TodoItem from '@/components/todo/TodoItem'
 
 export default {
   name: 'App',
   components: {
-    SidebarMain,
-    TodoItem
+    SidebarMain
   },
   data () {
     return {
