@@ -11,7 +11,7 @@
       </div>
 
       <span class="todo-checkbox__text">
-        Task
+        {{ item.name }}
       </span>
 
       <button

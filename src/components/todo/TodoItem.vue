@@ -11,7 +11,7 @@
     <hr class="todo-item__divider">
 
     <div class="todo-item__body">
-      <TodoCheckbox/>
+      <TodoCheckbox :item="{ name: 'Test', completed: true }" class="todo-item__checkbox"/>
     </div>
 
     <div class="todo-item__footer">
@@ -91,6 +91,10 @@ export default {
         color: $color-black;
       }
     }
+  }
+
+  &__checkbox + &__checkbox {
+    margin-top: 20px;
   }
 
   &__add {
