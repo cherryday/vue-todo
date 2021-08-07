@@ -10,23 +10,35 @@
         <IconCheck class="todo-checkbox__icon"/>
       </div>
 
-      Task
+      <span class="todo-checkbox__text">
+        Task
+      </span>
+
+      <button
+        v-if="item.completed"
+        class="todo-checkbox__close"
+        @click="$emit('remove')"
+      >
+        <IconCross/>
+      </button>
     </label>
   </div>
 </template>
 
 <script>
 import IconCheck from '@/components/icons/IconCheck'
+import IconCross from '@/components/icons/IconCross'
 
 export default {
   name: 'todo-checkbox',
   components: {
-    IconCheck
+    IconCheck,
+    IconCross
   },
   props: {
     item: {
       type: Object,
-      // required: true
+      required: true
     }
   }
 }
@@ -34,9 +46,13 @@ export default {
 
 <style lang="scss" scoped>
 .todo-checkbox {
+  display: flex;
+  align-items: center;
+
   &__label {
     display: flex;
     align-items: center;
+    flex-grow: 1;
     cursor: pointer;
 
     &:hover {
@@ -47,6 +63,10 @@ export default {
 
       .todo-checkbox__icon {
         color: #B2B2B2;
+        opacity: 1;
+      }
+
+      .todo-checkbox__close {
         opacity: 1;
       }
     }
@@ -72,7 +92,7 @@ export default {
     border: 2px solid #E8E8E8;
     border-radius: 50%;
     margin-right: 14px;
-    transition: .3s;
+    transition: $animation-time;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,7 +100,18 @@ export default {
 
   &__icon {
     color: $color-white;
-    transition: .3s;
+    transition: $animation-time;
+  }
+
+  &__close {
+    opacity: 0;
+    color: $color-grey-250;
+    margin-left: auto;
+    transition: $animation-time;
+
+    &:hover {
+      color: $color-black;
+    }
   }
 }
 </style>

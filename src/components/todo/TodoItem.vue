@@ -14,11 +14,19 @@
       <TodoCheckbox/>
     </div>
 
+    <div class="todo-item__footer">
+      <button class="todo-item__add">
+        <IconPlus/>
+        Новая задача
+      </button>
+    </div>
+
     <TodoAdd/>
   </div>
 </template>
 
 <script>
+import IconPlus from '../icons/IconPlus'
 import IconPencil from '../icons/IconPencil'
 import TodoCheckbox from './TodoCheckbox'
 import TodoAdd from './TodoAdd'
@@ -26,6 +34,7 @@ import TodoAdd from './TodoAdd'
 export default {
   name: 'todo-item',
   components: {
+    IconPlus,
     IconPencil,
     TodoCheckbox,
     TodoAdd
@@ -74,10 +83,33 @@ export default {
   &__icon {
     svg {
       color: #DFDFDF;
-      transition: .3s;
+      transition: $animation-time;
     }
 
     &:hover {
+      svg {
+        color: $color-black;
+      }
+    }
+  }
+
+  &__add {
+    display: flex;
+    align-items: center;
+    color: $color-grey-300;
+    transition: $animation-time;
+
+    svg {
+      margin-right: 16px;
+      color: $color-grey-300;
+      width: 14px;
+      height: 14px;
+      transition: $animation-time;
+    }
+
+    &:hover {
+      color: $color-black;
+
       svg {
         color: $color-black;
       }

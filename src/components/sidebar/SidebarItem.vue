@@ -55,7 +55,7 @@ export default {
   padding: 10px 12px;
   cursor: pointer;
   border-radius: 4px;
-  transition: .3s;
+  transition: $animation-time;
 
   &--active {
     box-shadow: 0px 2px 10px rgba($color-black, 0.05);
@@ -82,8 +82,8 @@ export default {
     margin-left: auto;
 
     svg {
-      transition: .3s;
-      color: #E3E3E3;
+      transition: $animation-time;
+      color: $color-grey-250;
     }
 
     &:hover {

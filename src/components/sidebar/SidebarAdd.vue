@@ -1,8 +1,8 @@
 <template>
   <div class="sidebar-add">
-    <SidebarItem @click="isOpen = true">
+    <SidebarItem class="sidebar-add__add" @click="isOpen = true">
       <template #prepend>
-        <img src="@/assets/images/icon-plus.svg" alt="plus">
+        <IconPlus/>
       </template>
       <template #text>
         Добавить
@@ -52,6 +52,7 @@
 import UiInput from '@/components/ui/UiInput'
 import UiButton from '@/components/ui/UiButton'
 import IconCross from '@/components/icons/IconCross'
+import IconPlus from '@/components/icons/IconPlus'
 import ColorBage from '@/components/ColorBage'
 import SidebarItem from './SidebarItem'
 
@@ -60,6 +61,7 @@ export default {
   components: {
     SidebarItem,
     UiInput,
+    IconPlus,
     IconCross,
     UiButton,
     ColorBage
@@ -118,6 +120,14 @@ export default {
       color: $color-white;
       width: 8px;
       height: 8px;
+    }
+  }
+
+  &__add {
+    color: $color-grey-400;
+
+    svg {
+      color: $color-grey-400;
     }
   }
 
