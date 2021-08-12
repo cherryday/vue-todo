@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <div class="container">
+    <SpinnerLoader v-if="isLoading"/>
+
+    <div v-else class="container">
       <SidebarMain :todos="todos"/>
 
       <main class="main">
@@ -21,11 +23,13 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import SidebarMain from '@/components/sidebar/SidebarMain'
+import SpinnerLoader from '@/components/SpinnerLoader'
 
 export default {
   name: 'App',
   components: {
-    SidebarMain
+    SidebarMain,
+    SpinnerLoader
   },
   data () {
     return {
@@ -51,7 +55,7 @@ export default {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  min-height: 580px;
+  min-height: 480px;
 }
 
 .container {
