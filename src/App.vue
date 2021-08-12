@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div class="container">
-      <SidebarMain :items="todos"/>
+      <SidebarMain :todos="todos"/>
 
       <main class="main">
-        <p v-if="isError" class="main-title main-title--error">
+        <p v-if="isErrorTodos" class="main-title main-title--error">
           Произошла ошибка, попробуйте перезагрузить страницу
         </p>
 
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import http from '@/http'
+import { mapState, mapActions } from 'vuex'
 import SidebarMain from '@/components/sidebar/SidebarMain'
 
 export default {
@@ -29,19 +29,14 @@ export default {
   },
   data () {
     return {
-      isLoading: true,
-      isError: false,
-      todos: []
+      isLoading: true
     }
   },
+  computed: {
+    ...mapState(['todos', 'isErrorTodos'])
+  },
   methods: {
-    async fetchTodos () {
-      try {
-        this.todos = await http.getTodos()
-      } catch (err) {
-        this.isError = true
-      }
-    }
+    ...mapActions(['fetchTodos'])
   },
   async created () {
     await this.fetchTodos()

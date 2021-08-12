@@ -1,6 +1,6 @@
 <template>
   <aside class="sidebar-main">
-    <template v-if="items.length">
+    <template v-if="todos.length">
       <SidebarLink to="/" class="sidebar-main__todo">
         <template #prepend>
           <img src="@/assets/images/icon-list.svg" alt="list">
@@ -11,11 +11,12 @@
       </SidebarLink>
 
       <SidebarLink
-        v-for="todo in items"
+        v-for="todo in todos"
         :key="todo.id"
         :to="`/${todo.id}`"
         remove
         class="sidebar-main__todo"
+        @remove="removeTodo(todo.id)"
       >
         <template #prepend>
           <ColorBage :color="todo.color"/>
@@ -44,13 +45,15 @@ export default {
     SidebarAdd
   },
   props: {
-    items: {
+    todos: {
       type: Array,
       default: () => []
     }
   },
   methods: {
-    removeItem () {}
+    async removeTodo (todoId) {
+      // this.$emit('update')
+    }
   }
 }
 </script>
