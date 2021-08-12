@@ -1,10 +1,14 @@
 <template>
   <div id="app">
     <div class="container">
-      <SidebarMain :items="items"/>
+      <SidebarMain :items="todos"/>
 
       <main class="main">
-        <template v-if="items.length">
+        <p v-if="isError" class="main-title main-title--error">
+          Произошла ошибка, попробуйте перезагрузить страницу
+        </p>
+
+        <template v-else-if="todos.length">
           <router-view></router-view>
         </template>
 
@@ -15,6 +19,7 @@
 </template>
 
 <script>
+import http from '@/http'
 import SidebarMain from '@/components/sidebar/SidebarMain'
 
 export default {
@@ -24,17 +29,23 @@ export default {
   },
   data () {
     return {
-      items: [
-        { id: 1, name: 'One', color: '#64C4ED' },
-        { id: 2, name: 'Two', color: '#FFBBCC' }
-      ],
-      todo: {
-        id: 1,
-        name: 'Фронтенд',
-        color: 'red',
-        todos: []
+      isLoading: true,
+      isError: true,
+      todos: []
+    }
+  },
+  methods: {
+    async fetchTodos () {
+      try {
+        this.todos = await http.getTodos()
+      } catch (err) {
+        this.isError = true
       }
     }
+  },
+  async created () {
+    await this.fetchTodos()
+    this.isLoading = false
   }
 }
 </script>
@@ -65,5 +76,9 @@ export default {
   align-items: center;
   justify-content: center;
   height: 100%;
+
+  &--error {
+    color: $color-red;
+  }
 }
 </style>
