@@ -1,65 +1,64 @@
 <template>
-  <div
-    class="sidebar-item"
-    :class="classes"
-    @click="$emit('click')"
+  <router-link
+    :to="to"
+    exact
+    class="sidebar-link"
+    active-class="sidebar-link--active"
   >
-    <div class="sidebar-item__prepend">
+    <div class="sidebar-link__prepend">
       <slot name="prepend"></slot>
     </div>
 
-    <div class="sidebar-item__text">
+    <div class="sidebar-link__text">
       <slot name="text"></slot>
     </div>
 
     <button
       v-if="remove"
-      class="sidebar-item__button"
-      @click.stop="$emit('remove')"
+      class="sidebar-link__button"
+      @click.prevent.stop="$emit('remove')"
     >
       <IconCross/>
     </button>
-  </div>
+  </router-link>
 </template>
 
 <script>
 import IconCross from '@/components/icons/IconCross'
 
 export default {
-  name: 'sidebar-item',
+  name: 'sidebar-link',
   components: { IconCross },
   props: {
-    active: {
-      type: Boolean,
-      default: false
+    to: {
+      type: String,
+      required: true
     },
     remove: {
       type: Boolean,
       default: false
-    }
-  },
-  computed: {
-    classes () {
-      return {
-        'sidebar-item--active': this.active
-      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.sidebar-item {
+.sidebar-link {
   display: flex;
   align-items: center;
   padding: 10px 12px;
   cursor: pointer;
   border-radius: 4px;
   transition: $animation-time;
+  text-decoration: none;
 
   &--active {
     box-shadow: 0px 2px 10px rgba($color-black, 0.05);
     background: $color-white;
+  }
+
+  &:visited {
+    color: $color-black;
   }
 
   &:hover {

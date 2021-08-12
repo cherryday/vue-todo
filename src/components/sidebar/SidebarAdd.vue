@@ -1,13 +1,9 @@
 <template>
   <div class="sidebar-add">
-    <SidebarItem class="sidebar-add__add" @click="isOpen = true">
-      <template #prepend>
-        <IconPlus/>
-      </template>
-      <template #text>
-        Добавить
-      </template>
-    </SidebarItem>
+    <button class="sidebar-add__button" @click="isOpen = true">
+      <IconPlus/>
+      Добавить
+    </button>
 
     <form
       v-show="isOpen"
@@ -54,12 +50,10 @@ import UiButton from '@/components/ui/UiButton'
 import IconCross from '@/components/icons/IconCross'
 import IconPlus from '@/components/icons/IconPlus'
 import ColorBage from '@/components/ColorBage'
-import SidebarItem from './SidebarItem'
 
 export default {
   name: 'sidebar-add',
   components: {
-    SidebarItem,
     UiInput,
     IconPlus,
     IconCross,
@@ -93,6 +87,26 @@ export default {
 .sidebar-add {
   position: relative;
 
+  &__button {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 4px;
+    transition: $animation-time;
+    color: $color-grey-400;
+    width: 100%;
+
+    &:hover {
+      box-shadow: 0px 2px 10px rgba($color-black, 0.05);
+      background: $color-white;
+    }
+
+    svg {
+      color: $color-grey-400;
+      margin-right: 10px;
+    }
+  }
+
   &__form {
     position: absolute;
     left: 0;
@@ -120,14 +134,6 @@ export default {
       color: $color-white;
       width: 8px;
       height: 8px;
-    }
-  }
-
-  &__add {
-    color: $color-grey-400;
-
-    svg {
-      color: $color-grey-400;
     }
   }
 

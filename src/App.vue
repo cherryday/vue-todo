@@ -9,7 +9,7 @@
         </p>
 
         <template v-else-if="todos.length">
-          <router-view></router-view>
+          <router-view :todos="todos"></router-view>
         </template>
 
         <h1 v-else class="main-title">Задачи отсутствуют</h1>
@@ -30,7 +30,7 @@ export default {
   data () {
     return {
       isLoading: true,
-      isError: true,
+      isError: false,
       todos: []
     }
   },
@@ -67,8 +67,9 @@ export default {
 
 .main {
   flex-grow: 1;
-  padding: 56px 56px 0;
+  padding: 56px 56px 28px;
   background-color: $color-white;
+  overflow-y: auto;
 }
 
 .main-title {

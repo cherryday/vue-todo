@@ -1,34 +1,30 @@
 <template>
   <aside class="sidebar-main">
     <template v-if="items.length">
-      <SidebarItem
-        :active="isActive(0)"
-        class="sidebar-main__item"
-        @click="selectItem(0)"
-      >
+      <SidebarLink to="/" class="sidebar-main__todo">
         <template #prepend>
           <img src="@/assets/images/icon-list.svg" alt="list">
         </template>
         <template #text>
           Все задачи
         </template>
-      </SidebarItem>
+      </SidebarLink>
 
-      <SidebarItem
-        v-for="(item, index) in items"
-        :key="item.id"
+      <SidebarLink
+        v-for="todo in items"
+        :key="todo.id"
+        :to="`/${todo.id}`"
         remove
-        class="sidebar-main__item"
-        :active="isActive(index + 1)"
-        @click="selectItem(index + 1)"
+        class="sidebar-main__todo"
       >
         <template #prepend>
-          <ColorBage :color="item.color"/>
+          <ColorBage :color="todo.color"/>
         </template>
+
         <template #text>
-          {{ item.name }}
+          {{ todo.name }}
         </template>
-      </SidebarItem>
+      </SidebarLink>
     </template>
 
     <SidebarAdd/>
@@ -36,15 +32,15 @@
 </template>
 
 <script>
-import SidebarItem from './SidebarItem'
 import SidebarAdd from './SidebarAdd'
+import SidebarLink from './SidebarLink'
 import ColorBage from '@/components/ColorBage'
 
 export default {
   name: 'sidebar-main',
   components: {
-    SidebarItem,
     ColorBage,
+    SidebarLink,
     SidebarAdd
   },
   props: {
@@ -53,18 +49,7 @@ export default {
       default: () => []
     }
   },
-  data () {
-    return {
-      activeIndex: 0
-    }
-  },
   methods: {
-    isActive (index) {
-      return this.activeIndex === index
-    },
-    selectItem (index) {
-      this.activeIndex = index
-    },
     removeItem () {}
   }
 }
@@ -73,11 +58,12 @@ export default {
 <style lang="scss" scoped>
 .sidebar-main {
   width: 200px;
-  padding: 48px 20px 0;
+  padding: 48px 20px 20px;
   background-color: #F5F6F8;
   border-right: 1px solid #F1F1F1;
+  // overflow-y: auto;
 
-  &__item {
+  &__todo {
     margin-bottom: 8px;
 
     &:first-child {
