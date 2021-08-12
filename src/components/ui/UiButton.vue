@@ -15,11 +15,16 @@ export default {
     color: {
       type: String,
       default: 'green'
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
     classes () {
       return {
+        'ui-button--loading': this.loading,
         'ui-button--green': this.color === 'green',
         'ui-button--grey': this.color === 'grey'
       }
@@ -42,6 +47,11 @@ export default {
   &--grey {
     color: #9C9C9C;
     background-color: #F4F6F8;
+  }
+
+  &--loading {
+    pointer-events: none;
+    background: $color-grey-400;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="ui-input">
+  <div class="ui-input" :class="classes">
     <input
       class="ui-input__input"
       type="text"
@@ -7,7 +7,7 @@
       :placeholder="placeholder"
       @input="$emit('input', $event.target.value)"
     >
-    <div v-if="error" class="ui-input__error">Error</div>
+    <div v-if="error" class="ui-input__error">{{ error }}</div>
   </div>
 </template>
 
@@ -18,6 +18,13 @@ export default {
     value: String,
     error: String,
     placeholder: String
+  },
+  computed: {
+    classes () {
+      return {
+        'ui-input--error': this.error
+      }
+    }
   }
 }
 </script>
@@ -39,10 +46,16 @@ export default {
 
   &__error {
     position: absolute;
-    bottom: -16px;
+    bottom: -14px;
     left: 0;
     font-size: 12px;
     color: $color-red;
+  }
+
+  &--error {
+    .ui-input__input {
+      border: 1px solid $color-red;
+    }
   }
 }
 </style>

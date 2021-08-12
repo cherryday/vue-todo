@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-add">
+  <div class="sidebar-add" v-click-outside="close">
     <button class="sidebar-add__button" @click="isOpen = true">
       <IconPlus/>
       Добавить
@@ -13,7 +13,7 @@
       <button
         type="button"
         class="sidebar-add__close"
-        @click="isOpen = false"
+        @click="close"
       >
         <IconCross/>
       </button>
@@ -22,6 +22,8 @@
         v-model="name"
         placeholder="Название"
         class="sidebar-add__input"
+        :error="errorMessage"
+        @input="validate"
       />
 
       <div class="sidebar-add__bages">
@@ -37,7 +39,7 @@
         />
       </div>
 
-      <UiButton>
+      <UiButton :loading="isLoading">
         Добавить
       </UiButton>
     </form>
@@ -45,6 +47,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import http from '@/http'
 import UiInput from '@/components/ui/UiInput'
 import UiButton from '@/components/ui/UiButton'
 import IconCross from '@/components/icons/IconCross'
@@ -63,21 +67,57 @@ export default {
   data () {
     return {
       isOpen: false,
+      isLoading: false,
       name: '',
       bageIndex: 0,
       bages: [
         { id: 1, color: 'green' },
         { id: 2, color: 'red' }
-      ]
+      ],
+      errorMessage: ''
+    }
+  },
+  watch: {
+    isOpen (value) {
+      if (!value) this.clearForm()
     }
   },
   methods: {
-    onSubmit () {
-      console.log('Create')
+    ...mapActions(['fetchTodos']),
+    validate () {
+      const isValid = this.name || false
+
+      if (!isValid) this.errorMessage = 'Необходимо заполнить'
+
+      return isValid
+    },
+    async onSubmit () {
+      if (!this.validate()) return
+
+      this.isLoading = true
+
+      const payload = {
+        name: this.name,
+        color: this.color
+      }
+
+      try {
+        await http.createTodo(payload)
+        await this.fetchTodos()
+        this.close()
+      } catch {
+        console.log('Err')
+      }
+
+      this.isLoading = false
     },
     clearForm () {
       this.name = ''
       this.bageIndex = 0
+      this.errorMessage = ''
+    },
+    close () {
+      this.isOpen = false
     }
   }
 }
@@ -138,12 +178,12 @@ export default {
   }
 
   &__input {
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
 
   &__bages {
     display: flex;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
 
   &__bage + &__bage {
